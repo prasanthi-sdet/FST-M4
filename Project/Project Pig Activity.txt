@@ -1,0 +1,25 @@
+inputDialouges = Load 'hdfs:///user/root/inputs/episodeIV_dialouges.txt' USING PigStorage('\t') AS (name: chararray, line: chararray);
+ranked = RANK inputDialouges;
+OnlyDialouges = FILTER ranked BY (rank_inputDialouges > 2);
+groupByName = GROUP OnlyDialouges BY name;
+names = FOREACH groupByName GENERATE $0 AS name, COUNT($1) AS no_of_lines;
+nameOrdered = ORDER names BY no_of_lines DESC;
+STORE nameOrdered INTO 'hdfs:///user/root/outputs/episodeIVOutput' USING PigStorage ('\t');
+
+
+inputDialouges = Load 'hdfs:///user/root/inputs/episodeV_dialouges.txt' USING PigStorage('\t') AS (name: chararray, line: chararray);
+ranked = RANK inputDialouges;
+OnlyDialouges = FILTER ranked BY (rank_inputDialouges > 2);
+groupByName = GROUP OnlyDialouges BY name;
+names = FOREACH groupByName GENERATE $0 AS name, COUNT($1) AS no_of_lines;
+nameOrdered = ORDER names BY no_of_lines DESC;
+STORE nameOrdered INTO 'hdfs:///user/root/outputs/episodeVOutput' USING PigStorage ('\t');
+
+
+inputDialouges = Load 'hdfs:///user/root/inputs/episodeVI_dialouges.txt' USING PigStorage('\t') AS (name: chararray, line: chararray);
+ranked = RANK inputDialouges;
+OnlyDialouges = FILTER ranked BY (rank_inputDialouges > 2);
+groupByName = GROUP OnlyDialouges BY name;
+names = FOREACH groupByName GENERATE $0 AS name, COUNT($1) AS no_of_lines;
+nameOrdered = ORDER names BY no_of_lines DESC;
+STORE nameOrdered INTO 'hdfs:///user/root/outputs/episodeVIOutput' USING PigStorage ('\t');
