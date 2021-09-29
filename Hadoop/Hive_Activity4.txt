@@ -1,0 +1,13 @@
+hive> CREATE TABLE files (line STRING);
+OK
+Time taken: 1.718 seconds
+hive> LOAD DATA LOCAL INPATH '/file01.txt' INTO TABLE files;
+Loading data to table default.files
+OK
+Time taken: 1.074 seconds
+hive> SELECT * FROM word_count;
+Bye,1
+Goodbye,1
+Hadoop,2
+Hello,2
+World,2
